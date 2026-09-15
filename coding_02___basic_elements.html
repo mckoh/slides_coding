@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>Einführung in Coding - Management Center Innsbruck</title>
+  <title>Einführung in Python - Management Center Innsbruck</title>
 
   <!-- Reveal.js CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
@@ -87,7 +87,7 @@
       color: var(--mci-blue);
       border-bottom: none;
       padding-bottom: 0;
-      margin-bottom: 40px;
+      margin-bottom: 25px;
     }
 
     .reveal h3, .reveal h4 {
@@ -172,7 +172,7 @@
 
     .reveal pre code {
       font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
-      font-size: 0.75em;
+      font-size: 0.72em;
       line-height: 1.4;
       background: #1e293b !important;
       padding: 12px 15px;
@@ -213,15 +213,13 @@
   <div class="reveal">
     <div class="slides">
 
-    <!-- KAPITEL 1: HAUPTFOLIE (Horizontal 1) -->
+      <!-- TITELFOLIE (Horizontal 0) -->
       <section class="title-slide">
         <span class="mci-badge">Coding VO</span>
 
-        <h1>
-            <!--Füge hier den Titel dieser Folien ein-->
-        </h1>
+        <h1>Einführung in Python</h1>
 
-        <p class="subtitle"><!--Füge hier den Untertitel ein --></p>
+        <p class="subtitle">Grundlagen der Programmierung: Datentypen, Logik, Datenstrukturen & Schleifen</p>
         <hr style="border-color: var(--mci-card-border); margin: 30px 0;">
         <div style="font-size: 0.6em; color: var(--mci-text-dark); display: flex; justify-content: space-between;">
             <div>
@@ -231,399 +229,415 @@
         </div>
       </section>
 
+      <!-- BLOCK 1: VARIABLEN & DATENTYPEN (Horizontal 1) -->
+      <section>
         <section>
-          <h2>Zielbild & Roadmap</h2>
+          <h2>Zielbild der heutigen Einheit</h2>
           <div class="grid-2">
             <div class="card">
-              <h3>Was wir heute lernen</h3>
+              <h3>Lernziele & Kernkompetenzen</h3>
               <ul>
-                <li><strong>Variablen & Datentypen:</strong> Zahlen, Text & Booleans</li>
-                <li><strong>Bedingungen:</strong> Logik mit <code>if / elif / else</code></li>
-                <li><strong>Datenstrukturen:</strong> Listen & Dictionaries</li>
-                <li><strong>Schleifen:</strong> Automation mit <code>for</code> & <code>while</code></li>
-                <li><strong>Ausblick:</strong> List Comprehensions</li>
+                <li><strong>Verständnis des Arbeitsspeichers:</strong> Wie Werte in Variablen abgelegt und adressiert werden.</li>
+                <li><strong>Datentypen & Logik:</strong> Dynamische Typisierung beherrschen und Verzweigungen korrekt einrücken.</li>
+                <li><strong>Strukturierte Daten:</strong> Sequenzielle vs. assoziative Speicherstrukturen (Listen vs. Dictionaries).</li>
+                <li><strong>Pythonic Control Flow:</strong> Schleifensteuerung und iterative Erzeugung via List Comprehensions.</li>
               </ul>
             </div>
             <div class="card accent">
-              <h3>Setup-Check</h3>
-              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Notebook / Datei öffnen und testen:</p>
-              <pre><code class="language-python">print("Hello World! Bereit für Python.")</code></pre>
-              <div class="highlight-box" style="margin-top: 10px;">
-                <strong>Ziel:</strong> Alle Umgebungen laufen, gemeinsame Erwartung aufgebaut.
+              <h3>Didaktischer Aufbau</h3>
+              <div class="pyramid-level"><strong>Block 1:</strong> Variablen & Dynamische Typisierung</div>
+              <div class="pyramid-level"><strong>Block 2:</strong> Kontrollstrukturen & Syntax (Indentation)</div>
+              <div class="pyramid-level"><strong>Block 3:</strong> Iterables (Listen, Dicts, Tuples, Sets)</div>
+              <div class="pyramid-level"><strong>Block 4:</strong> Control Flow & List Comprehensions</div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Speicherung im Arbeitsspeicher & Benennungsschemata</h2>
+          <div class="grid-2">
+            <div>
+              <div class="card">
+                <h3>Speicherung im Arbeitsspeicher</h3>
+                <ul>
+                  <li>Variablen sind <strong>Referenzen (Zeiger)</strong> auf Speicherbereiche im RAM.</li>
+                  <li>Der Zuweisungsoperator <code>=</code> verbindet einen Namen mit einem Objekt im Speicher.</li>
+                  <li>Ein Wert kann mehrere Namen/Referenzen besitzen.</li>
+                </ul>
+              </div>
+              <div class="highlight-box">
+                <strong>PEP 8 Standard:</strong> Variablen- und Funktionsnamen werden konsequent in <code>snake_case</code> geschrieben (kleingeschrieben, Worte getrennt mit Unterstrich).
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-python"># Variablenzuweisung im RAM
+student_count = 42
+user_name = "Alice"
+is_active = True
+
+# Gute Naming-Conventions (snake_case)
+total_revenue_eur = 12500.50
+course_title = "Data Science 101"
+
+# Inkorrekte / Unsaubere Benennung:
+# 1student = 10 (Ungültig: startet mit Zahl)
+# StudentCount = 42 (Unüblich: PascalCase)
+# studentCount = 42 (Unüblich: camelCase)</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Dynamische Typisierung in Python</h2>
+          <div class="grid-2">
+            <div>
+              <div class="card">
+                <h3>Grundlegende Datentypen</h3>
+                <ul>
+                  <li><code>int</code>: Ganzzahlen (z.B. <code>10</code>, <code>-5</code>)</li>
+                  <li><code>float</code>: Gleitkommazahlen (z.B. <code>3.14159</code>)</li>
+                  <li><code>str</code>: Zeichenketten (z.B. <code>"MCI"</code>)</li>
+                  <li><code>bool</code>: Wahrheitswerte (<code>True</code> oder <code>False</code>)</li>
+                </ul>
+              </div>
+              <div class="card accent" style="margin-top: 15px;">
+                <h3>Dynamische Typisierung</h3>
+                <p style="font-size: 0.85em; color: var(--mci-text-dark); margin: 0;">
+                  Der Typ wird erst zur Laufzeit evaluiert. Variablen können ihren Datentyp dynamisch ändern.
+                </p>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-python"># Dynamische Typveränderung
+value = 100          # int
+print(type(value))   # <class 'int'>
+
+value = "Hundert"    # str
+print(type(value))   # <class 'str'>
+
+# Typumwandlung (Type Casting)
+age_str = "25"
+age_int = int(age_str)
+price_float = float("19.99")
+is_valid = bool(1)   # True</code></pre>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- BLOCK 2: BEDINGUNGEN, BOOL'SCHE LOGIK & EINRÜCKUNG (Horizontal 2) -->
+      <section>
+        <section>
+          <h2>Verzweigungen mit if, elif und else</h2>
+          <div class="grid-2">
+            <div>
+              <div class="card">
+                <h3>Ablaufsteuerung durch Verzweigung</h3>
+                <ul>
+                  <li>Verzweigungen ermöglichen die bedingte Ausführung von Codeblöcken.</li>
+                  <li><code>if</code> prüft die erste Bedingung.</li>
+                  <li><code>elif</code> (else if) prüft Folgebedingungen, falls die vorherigen falsch waren.</li>
+                  <li><code>else</code> fängt alle verbleibenden Fälle ab.</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-python">score = 85
+
+if score >= 90:
+    grade = "Sehr gut"
+elif score >= 80:
+    grade = "Gut"
+elif score >= 70:
+    grade = "Befriedigend"
+elif score >= 60:
+    grade = "Genügend"
+else:
+    grade = "Nicht genügend"
+
+print(f"Ihre Note: {grade}")</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Bool’sche Logik und Vergleichsoperatoren</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Operatoren-Übersicht</h3>
+              <table style="width: 100%; font-size: 0.75em; color: var(--mci-text-dark); border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 2px solid var(--mci-blue); text-align: left;">
+                    <th>Operator</th>
+                    <th>Bedeutung</th>
+                    <th>Beispiel</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>==</code> / <code>!=</code></td><td>Gleich / Ungleich</td><td><code>a == b</code></td></tr>
+                  <tr><td><code>&lt;</code> / <code>&gt;</code></td><td>Kleiner / Größer</td><td><code>a &lt; b</code></td></tr>
+                  <tr><td><code>&lt;=</code> / <code>&gt;=</code></td><td>Kleiner gleich / Größer gleich</td><td><code>a &gt;= b</code></td></tr>
+                  <tr><td><code>and</code></td><td>Logisches UND (beide True)</td><td><code>cond1 and cond2</code></td></tr>
+                  <tr><td><code>or</code></td><td>Logisches ODER (mind. eins True)</td><td><code>cond1 or cond2</code></td></tr>
+                  <tr><td><code>not</code></td><td>Logische Negation</td><td><code>not is_valid</code></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div>
+              <pre><code class="language-python">age = 22
+has_license = True
+has_experience = False
+
+# Kombinierte logische Prüfung
+if age >= 18 and has_license:
+    print("Fahrerlaubnis erteilt.")
+
+# Komplexe Bedingung mit Klammerung
+if (age > 21 or has_experience) and not is_blocked:
+    print("Zugang gewährt.")</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Syntax & Indentation: Warum Einrückung in Python essenziell ist</h2>
+          <div class="grid-2">
+            <div>
+              <div class="card accent">
+                <h3>Warum Einrückung essenziell ist</h3>
+                <ul>
+                  <li>Python verzichtet auf geschweifte Klammern <code>{}</code> oder <code>begin/end</code>.</li>
+                  <li>Codeblöcke werden <strong>ausschließlich durch Einrückung (Indentation)</strong> definiert.</li>
+                  <li>Standard laut PEP 8: <strong>4 Leerzeichen</strong> pro Ebene.</li>
+                  <li>Eine falsche Einrückung führt zu einem <code>IndentationError</code> oder logischen Fehlern.</li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <pre><code class="language-python"># Korrekte Einrückung (Blockstruktur):
+is_logged_in = True
+role = "admin"
+
+if is_logged_in:
+    print("Willkommen!")
+    if role == "admin":
+        print("Admin-Dashboard öffnen") # 8 Leerzeichen
+    else:
+        print("User-Dashboard öffnen")  # 8 Leerzeichen
+print("System bereit.")                 # 0 Leerzeichen
+
+# FEHLERHAFT (IndentationError):
+# if is_logged_in:
+# print("Fehler!") # Keine Einrückung!</code></pre>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- BLOCK 3: ITERABLES – LISTEN & DICTIONARIES (Horizontal 3) -->
+      <section>
+        <section>
+          <h2>Sequenzielle Datentypen vs. Key-Value-Speicher</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Listen (Sequenzielle Datentypen)</h3>
+              <ul>
+                <li>Geordnete Sammlung von Elementen.</li>
+                <li>Zugriff erfolgt über einen <strong>0-basierten Index</strong>.</li>
+                <li>Veränderbar (mutable) und erlaubt Duplikate.</li>
+                <li>Syntax: <code>[item1, item2, item3]</code></li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <h3>Dictionaries (Key-Value-Speicher)</h3>
+              <ul>
+                <li>Ungeordnete/Schlüssel-basierte Zuordnung.</li>
+                <li>Zugriff erfolgt über eindeutige <strong>Schlüssel (Keys)</strong>.</li>
+                <li>Hoch-effiziente Suche (Hash-Map).</li>
+                <li>Syntax: <code>{"key": "value"}</code></li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top: 15px;">
+            <pre><code class="language-python"># Beispiel Liste vs. Dictionary
+courses_list = ["Coding", "Data Science", "Math"]
+print(courses_list[0])  # Output: "Coding"
+
+student_dict = {"id": 101, "name": "Anna", "grade": 1.3}
+print(student_dict["name"])  # Output: "Anna"</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Die wichtigsten Methoden im Überblick</h2>
+          <div class="grid-2">
+            <div>
+              <div class="card">
+                <h3>Listen-Methoden</h3>
+                <pre><code class="language-python">fruits = ["Apfel", "Banane"]
+
+fruits.append("Orange") # Element anfügen
+print(fruits) # ['Apfel', 'Banane', 'Orange']
+
+idx = fruits.index("Banane") # Index finden (1)
+
+removed = fruits.pop(0) # Element entfernen & return
+print(removed) # 'Apfel'</code></pre>
+              </div>
+            </div>
+            <div>
+              <div class="card accent">
+                <h3>Dictionary-Methoden</h3>
+                <pre><code class="language-python">user = {"name": "Max", "age": 30, "role": "dev"}
+
+print(user.keys())   # dict_keys(['name', 'age', 'role'])
+print(user.values()) # dict_values(['Max', 30, 'dev'])
+print(user.items())  # Key-Value Paare (Tuples)
+
+# Sichere Abfrage mit get (vermeidet KeyError)
+email = user.get("email", "nicht vorhanden")
+print(email) # 'nicht vorhanden'</code></pre>
               </div>
             </div>
           </div>
         </section>
-      </section>
-
-      <!-- MODUL 1: VARIABLEN & DATENTYPEN -->
-      <section>
-        <section>
-          <h2>Variablen in Python</h2>
-          <div class="grid-2">
-            <div class="card">
-              <h3>Was ist eine Variable?</h3>
-              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Ein benannter Speicherplatz für Werte. Der Name ist frei wählbar (snake_case empfohlen).</p>
-              <pre><code class="language-python"># Zuweisung mit =
-alter = 25
-name = "Anna"
-preis = 19.99</code></pre>
-            </div>
-            <div class="card accent">
-              <h3>Dynamische Typisierung</h3>
-              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Python erkennt den Datentyp automatisch zur Laufzeit.</p>
-              <pre><code class="language-python">x = 5       # Python weiß: int
-x = "Hallo" # Jetzt ist x ein str</code></pre>
-            </div>
-          </div>
-        </section>
 
         <section>
-          <h2>Grundlegende Datentypen & <code>type()</code></h2>
-          <div class="grid-2">
+          <h2>Überblick ohne Vertiefung: Was unterscheidet Tuples und Sets von Listen?</h2>
+          <div class="grid-3">
             <div class="card">
-              <h3>Die 4 Basistypen</h3>
+              <h3>List (Liste)</h3>
               <ul>
-                <li><code>int</code>: Ganzzahlen (<code>42</code>, <code>-10</code>)</li>
-                <li><code>float</code>: Kommazahlen (<code>3.14</code>)</li>
-                <li><code>str</code>: Text / Strings (<code>"MCI"</code>)</li>
-                <li><code>bool</code>: Wahrheitswerte (<code>True</code>, <code>False</code>)</li>
+                <li><strong>Mutable:</strong> Verpflichtend veränderbar.</li>
+                <li><strong>Geordnet:</strong> Behält Index-Reihenfolge bei.</li>
+                <li><strong>Duplikate:</strong> Erlaubt.</li>
+                <li><code>[1, 2, 2, 3]</code></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Tuple (Tupel)</h3>
+              <ul>
+                <li><strong>Immutable:</strong> Unveränderbar nach Erstellung.</li>
+                <li><strong>Geordnet:</strong> Index-Zugriff möglich.</li>
+                <li><strong>Performance:</strong> Schneller & speichereffizienter.</li>
+                <li><code>(10.0, 47.2)</code></li>
               </ul>
             </div>
             <div class="card accent">
-              <h3>Typ prüfen</h3>
-              <pre><code class="language-python">alter = 22
-pi = 3.1415
-kurs = "Python"
-aktiv = True
-
-print(type(alter)) # <class 'int'>
-print(type(pi))    # <class 'float'></code></pre>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2>Strings & f-Strings</h2>
-          <div class="card">
-            <h3>Formatierte Strings (f-Strings)</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Einfache Einbettung von Variablen direkt im Text mittels <code>f"..."</code>.</p>
-            <pre><code class="language-python">name = "Maria"
-punkte = 95
-
-# f-String Auswertung zur Laufzeit:
-nachricht = f"Hallo {name}, du hast {punkte} Punkte erreicht!"
-print(nachricht)
-# Output: Hallo Maria, du hast 95 Punkte erreicht!</code></pre>
-          </div>
-        </section>
-      </section>
-
-      <!-- MODUL 2: BEDINGUNGEN -->
-      <section>
-        <section>
-          <h2>Bedingungen: if / elif / else</h2>
-          <div class="card">
-            <h3>Entscheidungslogik im Code</h3>
-            <pre><code class="language-python">note = 2
-
-if note == 1:
-    print("Sehr gut")
-elif note == 2:
-    print("Gut")
-elif note == 3:
-    print("Befriedigend")
-else:
-    print("Bestanden oder Wiederholung")</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Vergleiche & Einrückung</h2>
-          <div class="grid-2">
-            <div class="card">
-              <h3>Vergleichsoperatoren</h3>
+              <h3>Set (Menge)</h3>
               <ul>
-                <li><code>==</code> (Gleich) | <code>!=</code> (Ungleich)</li>
-                <li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
-                <li>Ergebnis ist immer ein <code>bool</code> (<code>True</code>/<code>False</code>)</li>
+                <li><strong>Ungeordnet:</strong> Keinerlei Indexing.</li>
+                <li><strong>Eindeutig:</strong> Keine Duplikate erlaubt.</li>
+                <li><strong>Mengenlehre:</strong> Schnittmengen, Vereinigungen.</li>
+                <li><code>{1, 2, 3}</code></li>
               </ul>
             </div>
-            <div class="card accent">
-              <h3>Syntax-Regel: 4 Spaces</h3>
-              <p style="font-size: 0.8em; color: var(--mci-text-muted);">Einrückung definiert den Codeblock. Keine Tabulatoren mischen!</p>
-              <pre><code class="language-python">if x > 0:
-    # 4 Leerzeichen Pflicht!
-    print("Positiv")</code></pre>
-            </div>
+          </div>
+          <div style="margin-top: 15px;">
+            <pre><code class="language-python"># Beispiel Sets & Tuples
+unique_ids = set([101, 102, 101, 103]) # {101, 102, 103}
+coordinates = (47.2692, 11.4041)       # Tuples sind unveränderbar (z.B. GPS)</code></pre>
           </div>
         </section>
       </section>
 
-      <!-- PAUSE 1 -->
-      <section>
-        <h2>☕ Pause</h2>
-        <div class="highlight-box" style="margin-top: 40px; text-align: center; padding: 30px;">
-          <h3 style="color: #9a3412; margin-bottom: 10px;">Durchatmen & Kaffee holen</h3>
-          <p style="color: var(--mci-text-dark); margin: 0;">Gleich geht es weiter mit <strong>Listen & Dictionaries</strong>.</p>
-        </div>
-      </section>
-
-      <!-- MODUL 3: LISTEN -->
+      <!-- BLOCK 4: SCHLEIFEN & LIST COMPREHENSIONS (Horizontal 4) -->
       <section>
         <section>
-          <h2>Listen in Python</h2>
-          <div class="card">
-            <h3>Was ist eine Liste?</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Eine geordnete, veränderbare (mutable) Sammlung von Elementen.</p>
-            <pre><code class="language-python"># Erstellen einer Liste mit eckigen Klammern []
-teilnehmer = ["Anna", "Ben", "Clara", "David"]
-zahlen = [10, 20, 30, 40]
-gemischt = [1, "Hallo", True, 3.14]</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Indexing & Slicing</h2>
+          <h2>for-Schleifen vs. while-Schleifen: Anwendungsfälle und Unterschiede</h2>
           <div class="grid-2">
-            <div class="card">
-              <h3>Indexing (0-basiert)</h3>
-              <pre><code class="language-python">lst = ["A", "B", "C", "D"]
+            <div>
+              <div class="card">
+                <h3>for-Schleife (Iterativ)</h3>
+                <p style="font-size:0.8em;">Wird genutzt, wenn die Anzahl der Iterationen bekannt ist oder über eine Sequenz iteriert wird.</p>
+                <pre><code class="language-python"># Iteration über Iterable / Range
+for i in range(3):
+    print(f"Durchlauf: {i}")
 
-print(lst[0])   # "A" (Erstes Element)
-print(lst[-1])  # "D" (Letztes Element)</code></pre>
+languages = ["Python", "SQL", "R"]
+for lang in languages:
+    print(lang)</code></pre>
+              </div>
             </div>
-            <div class="card accent">
-              <h3>Slicing [Start:Stopp]</h3>
-              <pre><code class="language-python"># Stopp-Index ist exklusiv!
-print(lst[1:3]) # ["B", "C"]
-print(lst[:2])  # ["A", "B"]
-print(lst[2:])  # ["C", "D"]</code></pre>
+            <div>
+              <div class="card accent">
+                <h3>while-Schleife (Bedingungsbasiert)</h3>
+                <p style="font-size:0.8em;">Wird genutzt, solange eine bestimmte Bedingung wahr (<code>True</code>) bleibt.</p>
+                <pre><code class="language-python"># Solange Bedingung True ist
+count = 5
+while count > 0:
+    print(f"Countdown: {count}")
+    count -= 1  # Abbruchbedingung ändern!</code></pre>
+              </div>
             </div>
           </div>
         </section>
 
         <section>
-          <h2>Wichtige Listen-Methoden</h2>
-          <div class="card">
-            <h3>Elemente verändern & verwalten</h3>
-            <pre><code class="language-python">fruechte = ["Apfel", "Banane"]
-
-fruechte.append("Orange") # Hinzufügen -> ["Apfel", "Banane", "Orange"]
-entfernt = fruechte.pop() # Letztes Element entfernen & zurückgeben
-anzahl = len(fruechte)    # Länge der Liste -> 2
-fruechte.sort()           # Alphabetisch/Numerisch sortieren</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Typische Fehler bei Listen</h2>
-          <div class="card accent">
-            <h3>Gefahrenstelle: IndexError & Off-by-one</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Zugriffe außerhalb des gültigen Indexbereichs führen zum Programmabbruch:</p>
-            <pre><code class="language-python">zahlen = [1, 2, 3] # Indizes 0, 1, 2
-
-# IndexError: list index out of range
-print(zahlen[3])</code></pre>
-          </div>
-        </section>
-      </section>
-
-      <!-- MODUL 4: DICTIONARIES -->
-      <section>
-        <section>
-          <h2>Dictionaries</h2>
-          <div class="card">
-            <h3>Schlüssel-Wert-Speicher (Key-Value)</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Nachschlagetabelle für strukturierte Daten (wie ein reales Wörterbuch).</p>
-            <pre><code class="language-python"># Erstellung mit geschweiften Klammern {}
-student = {
-    "name": "Lukas",
-    "matrikelnummer": 123456,
-    "studiengang": "MCI"
-}</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Zugriff: Klammern vs. <code>get()</code></h2>
+          <h2>Ablaufsteuerung in Schleifen: Der Einsatz von break und continue</h2>
           <div class="grid-2">
-            <div class="card">
-              <h3>Direkter Zugriff: <code>d["key"]</code></h3>
-              <pre><code class="language-python">print(student["name"]) # "Lukas"
-
-# KeyError wenn Schlüssel fehlt!
-print(student["alter"]) # Fehler!</code></pre>
+            <div>
+              <div class="card">
+                <h3>Steuerungsbefehle</h3>
+                <ul>
+                  <li><code>break</code>: Bricht die gesamte Schleife sofort ab und springt dahinter.</li>
+                  <li><code>continue</code>: Überspringt den restlichen Code des <strong>aktuellen Durchlaufs</strong> und geht zum nächsten.</li>
+                </ul>
+              </div>
+              <div class="highlight-box">
+                Tipp: Nutzen Sie <code>break</code> gezielt zur Vermeidung von Endlosschleifen bei Überprüfungen.
+              </div>
             </div>
-            <div class="card accent">
-              <h3>Sicherer Zugriff: <code>d.get()</code></h3>
-              <pre><code class="language-python"># Gibt None oder Standardwert zurück
-print(student.get("alter"))       # None
-print(student.get("alter", 20))   # 20</code></pre>
+            <div>
+              <pre><code class="language-python"># Beispiel continue & break
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+print("Gerade Zahlen bis zur 6:")
+for num in numbers:
+    if num % 2 != 0:
+        continue  # Ungerade Zahlen überspringen
+    
+    if num > 6:
+        break     # Schleife bei Zahlen > 6 komplett beenden
+    
+    print(num)    # Output: 2, 4, 6</code></pre>
             </div>
           </div>
         </section>
 
         <section>
-          <h2>Iteration über Dictionaries</h2>
-          <div class="card">
-            <h3>Schlüssel und Werte durchlaufen</h3>
-            <pre><code class="language-python"># Über Key-Value Paare iterieren:
-for key, value in student.items():
-    print(f"{key}: {value}")</code></pre>
-          </div>
-        </section>
-      </section>
-
-      <!-- PAUSE 2 -->
-      <section>
-        <h2>☕ Pause</h2>
-        <div class="highlight-box" style="margin-top: 40px; text-align: center; padding: 30px;">
-          <h3 style="color: #9a3412; margin-bottom: 10px;">Durchatmen & Netzwerken</h3>
-          <p style="color: var(--mci-text-dark); margin: 0;">Gleich startet der Endspurt mit <strong>Schleifen & List Comprehensions</strong>.</p>
-        </div>
-      </section>
-
-      <!-- MODUL 5: FOR-SCHLEIFEN -->
-      <section>
-        <section>
-          <h2>Schleifen: <code>for</code></h2>
-          <div class="card">
-            <h3>Iterieren über Sammlungen</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">„Für jedes Element in der Sammlung mache folgendes…“</p>
-            <pre><code class="language-python">staedte = ["Innsbruck", "Wien", "Salzburg"]
-
-for stadt in staedte:
-    print(f"Willkommen in {stadt}!")</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2><code>range()</code> & Akkumulatoren</h2>
+          <h2>Pythonic Code: Einführung in die Syntax von List Comprehensions</h2>
           <div class="grid-2">
-            <div class="card">
-              <h3>Zahlenreihen mit <code>range()</code></h3>
-              <pre><code class="language-python"># range(5) erzeugt 0, 1, 2, 3, 4
-for i in range(5):
-    print(f"Durchlauf {i}")</code></pre>
+            <div>
+              <div class="card accent">
+                <h3>Einführung & Syntax</h3>
+                <p style="font-size:0.85em;">List Comprehensions bieten eine kompakte, prägnante und performante Möglichkeit, neue Listen zu erzeugen.</p>
+                <pre><code class="language-python"># Grundsyntax:
+[expression for item in iterable if condition]</code></pre>
+              </div>
+              <div class="card" style="margin-top: 15px;">
+                <h3>Vorteile</h3>
+                <ul>
+                  <li>Weniger Boilerplate-Code (Kompakter).</li>
+                  <li>Häufig schneller in der Ausführung als traditionelle <code>for</code>-Schleifen.</li>
+                  <li>Sehr gut lesbar, wenn nicht übermäßig verschachtelt.</li>
+                </ul>
+              </div>
             </div>
-            <div class="card accent">
-              <h3>Muster: Akkumulator</h3>
-              <pre><code class="language-python">preise = [10, 20, 30]
-summe = 0
+            <div>
+              <pre><code class="language-python"># Klassische for-Schleife (Traditionell)
+squares = []
+for x in range(1, 6):
+    squares.append(x ** 2)
+# Resultat: [1, 4, 9, 16, 25]
 
-for preis in preise:
-    summe += preis # summe = summe + preis
+# Pythonic Way mit List Comprehension
+squares = [x ** 2 for x in range(1, 6)]
 
-print(f"Gesamt: {summe}") # 60</code></pre>
+# Mit Bedingung (z.B. nur gerade Quadrate)
+even_squares = [x ** 2 for x in range(1, 6) if x % 2 == 0]
+# Resultat: [4, 16]</code></pre>
             </div>
-          </div>
-        </section>
-
-        <section>
-          <h2>Typische Anwendungen</h2>
-          <div class="card">
-            <h3>Zählen, Summieren & Filtern</h3>
-            <pre><code class="language-python">zahlen = [1, 5, 8, 12, 15]
-gefiltert = []
-
-for z in zahlen:
-    if z > 10:
-        gefiltert.append(z)
-
-print(gefiltert) # [12, 15]</code></pre>
-          </div>
-        </section>
-      </section>
-
-      <!-- MODUL 6: WHILE-SCHLEIFEN -->
-      <section>
-        <section>
-          <h2>Schleifen: <code>while</code></h2>
-          <div class="card">
-            <h3>Bedingungsgesteuerte Wiederholung</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">„Solange eine Bedingung erfüllt ist, führe den Code aus.“</p>
-            <pre><code class="language-python">counter = 3
-
-while counter > 0:
-    print(f"Countdown: {counter}")
-    counter -= 1 # WICHTIG: Zustand ändern!
-
-print("Start!")</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Abbruch & Zustandsänderung</h2>
-          <div class="card accent">
-            <h3>Gefahr von Endlosschleifen</h3>
-            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Der Zustand in der Abbruchbedingung <strong>muss</strong> sich innerhalb der Schleife verändern!</p>
-            <pre><code class="language-python"># Endlosschleife (Vermeiden!):
-# while True:
-#     print("Stoppt nie")</code></pre>
-          </div>
-        </section>
-
-        <section>
-          <h2>Steuerung: <code>break</code> & <code>continue</code></h2>
-          <div class="grid-2">
-            <div class="card">
-              <h3><code>break</code>: Schleife abbrechen</h3>
-              <pre><code class="language-python">while True:
-    eingabe = input("Beenden mit 'q': ")
-    if eingabe == 'q':
-        break # Verlässt die Schleife sofort</code></pre>
-            </div>
-            <div class="card accent">
-              <h3><code>continue</code>: Durchlauf überspringen</h3>
-              <pre><code class="language-python">for i in range(5):
-    if i == 2:
-        continue # Überspringt 2
-    print(i) # Druckt 0, 1, 3, 4</code></pre>
-            </div>
-          </div>
-        </section>
-      </section>
-
-      <!-- MODUL 7: LIST COMPREHENSIONS & WRAP-UP -->
-      <section>
-        <section>
-          <h2>List Comprehensions</h2>
-          <div class="grid-2">
-            <div class="card">
-              <h3>Klassische Schleife</h3>
-              <pre><code class="language-python">zahlen = [1, 2, 3, 4]
-quadrate = []
-
-for x in zahlen:
-    quadrate.append(x * x)</code></pre>
-            </div>
-            <div class="card accent">
-              <h3>List Comprehension (Kompakt)</h3>
-              <pre><code class="language-python">zahlen = [1, 2, 3, 4]
-
-# Elegant in einer Zeile:
-quadrate = [x * x for x in zahlen]
-
-# Mit Bedingung:
-gerade = [x for x in zahlen if x % 2 == 0]</code></pre>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <h2>Zusammenfassung & Takeaways</h2>
-          <div class="card accent">
-            <h3>Der rote Faden</h3>
-            <ul>
-              <li><strong>Variablen:</strong> Werte speichern und benennen</li>
-              <li><strong>Strukturen:</strong> Daten organisieren in Listen & Dictionaries</li>
-              <li><strong>Entscheidungen:</strong> Programmfluss steuern mit <code>if / elif / else</code></li>
-              <li><strong>Wiederholungen:</strong> Aufgaben automatisieren mit <code>for</code> & <code>while</code></li>
-            </ul>
-          </div>
-          <div class="highlight-box" style="text-align: center; margin-top: 25px;">
-            🎉 <strong>Geschafft!</strong> Viel Erfolg beim Programmieren!
           </div>
         </section>
       </section>
@@ -641,7 +655,7 @@ gerade = [x for x in zahlen if x % 2 == 0]</code></pre>
       controls: true,
       progress: true,
       center: true,
-      transition: 'convex',
+      transition: 'convex', /* 3D-Rotations-Animation */
       plugins: [ RevealHighlight ]
     });
   </script>
