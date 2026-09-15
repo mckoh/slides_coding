@@ -1,0 +1,38 @@
+# VORGABE
+
+Du bist ein erfahrener Frontend-Entwickler und Didaktiker. Erstelle für mich einen vollständigen, direkt nutzbaren HTML-Foliensatz für Reveal.js (eine einzelne index.html mit CDN-Abhängigkeiten) basierend auf den untenstehenden Inhalten und Formatierungsregeln.
+
+## 1. CORPORATE DESIGN & FARBGESTEALTUNG (MCI-STYLE)
+
+- Hintergründe: Durchgehend Weiß (#ffffff).
+- Primärfarbe (Überschriften, Akzente): MCI-Dunkelblau (#002855).
+- Sekundärfarbe (Highlights, Akzentkarten, Top-Balken): MCI-Orange (#f39200).
+- Textfarben: Dunkler Fließtext (#1e293b), Muted Subtitles (#64748b).
+- Header: Rechts oben ein fixes MCI-Logo platzieren (src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRehBjlcSgKSLTLyyEv_ntjrzmKD-hYL01GJjud00CW_Q&s=10", height: 45px).
+- Footer: Ein fixes, dezentes Fußzeilen-Element am unteren Rand mit Border-Top, MCI-Branding links und "www.mci.edu" rechts.
+- Titelfolie: Hervorgehoben mit einer 6px breiten orangen Oberkante (border-top: 6px solid #f39200) und einem dunkelblauen MCI-Badge.
+
+## 2. LAYOUT & TYPOGRAFIE
+
+- Schriftart: Sans-Serif ('Arial', 'Helvetica', sans-serif).
+- Textausrichtung: Grundsätzlich linksbündig (text-align: left).
+- H2-Überschriften: Ohne Unterstreichung / ohne orangen Balken, mit großzügigem Abstand nach unten (`margin-bottom: 40px;`).
+- Inhaltselemente: Nutze moderne Card-Container (`.card`) auf hellgrauem Hintergrund (`#f8fafc`) mit 4px Top-Border in Blau oder Orange, CSS-Grids (2-Spalten, 3-Spalten) sowie Highlight-Boxen für Kernaussagen.
+
+## 3. ZWEIDIMENSIONALE STRUCTUR (2D-MATRIX)
+
+- Hauptkapitel horizontal anordnen (Pfeil nach rechts).
+- Unterfolien/Vertiefungen innerhalb eines Kapitels vertikal unter der jeweiligen Hauptfolie anordnen (in verschachtelten `<section>`Tags, Pfeil nach unten).
+
+## 4. ANIMATIONEN & INTERAKTION
+
+- Übergangseffekt: Aktiviere die 3D-Rotations-Animation für den Folienwechsel (`transition: 'convex'`).
+- Fragment-Animations: Alle inhaltlichen Blöcke (Karten, Code-Blöcke, Listen, Info-Boxen) müssen mit der Klasse `fragment` versehen sein, damit sie beim Weiterschalten nacheinander erscheinen.
+
+## 5. CODE-HIGHLIGHTING
+
+- Nutze das Highlight.js-Plugin für Reveal.js (`RevealHighlight`) mit dem Theme `monokai.min.css`.
+- Codeblöcke (`<pre><code class="language-python">...</code></pre>`) müssen in dunklen Containers (`background: #1e293b`) dargestellt werden, um maximalen Kontrast und sauberes Syntax-Highlighting zu gewährleisten.
+
+# INHALTE FÜR DIE PRÄSENTATION
+

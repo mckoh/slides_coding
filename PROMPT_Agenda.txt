@@ -1,0 +1,6 @@
+# VORGABE
+
+Ich halte eine Vorlesung mit 6 Terminen zum Thema Coding. Für die erste Einheit mit 4 Stunden habe ich folgende Inhalte geplant (siehe unterhalb). Ich möchte in dieser Einheit ein wenig mit Folien unterrichten, aber vor allem die Inhalte Live mit einem LLM (z. B. Gemini) erarbeiten. Dazu möchte ich das Modell gezielt mit Prompts ansprechen, um Erklärungen zu generieren, Beispielaufgaben zu gestalten und tiefer ins Thema hinein zu fragen. Schreibe mir einen Ablaufplan für die LV. Berücksichtige darin Folien, die ich benötig um etwas frontal zu erklären. Berücksichtige darin ebenfalls die Prompts und Nachfragen, die ich verwenden kann um das Thema zu erarbeiten.
+
+# GEPLANTE INHALTE
+
