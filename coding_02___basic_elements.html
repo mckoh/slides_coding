@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <title>Python Fundamentals - Management Center Innsbruck</title>
+  <title>Einführung in Coding - Management Center Innsbruck</title>
 
   <!-- Reveal.js CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
@@ -27,7 +27,7 @@
       --r-background-color: #ffffff;
       --r-main-font-size: 24px;
       --r-main-font: 'Arial', 'Helvetica', sans-serif;
-      --r-heading-font: 'Arial', 'Helvetica', sans-serif;
+      --r-heading-font: 'Franklin Gothic Demi Cond', 'ITC Franklin Gothic', 'Arial Narrow', sans-serif;
       --r-heading-color: var(--mci-blue);
       --r-heading-text-transform: none;
       --r-link-color: var(--mci-orange);
@@ -73,6 +73,7 @@
     }
 
     .reveal h1 {
+      font-family: var(--r-heading-font);
       font-size: 2.2em;
       font-weight: 700;
       color: var(--mci-blue);
@@ -80,15 +81,17 @@
     }
 
     .reveal h2 {
+      font-family: var(--r-heading-font);
       font-size: 1.6em;
       font-weight: 700;
       color: var(--mci-blue);
       border-bottom: none;
       padding-bottom: 0;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
 
     .reveal h3, .reveal h4 {
+      font-family: var(--r-heading-font);
       color: var(--mci-blue);
       font-weight: 700;
     }
@@ -126,6 +129,7 @@
     }
 
     .card h3, .card h4 {
+      font-family: var(--r-heading-font);
       margin-top: 0;
       margin-bottom: 10px;
     }
@@ -145,6 +149,15 @@
       border-radius: 2px;
       margin-top: 20px;
       font-size: 0.9em;
+    }
+
+    .pyramid-level {
+      background: var(--mci-gray-bg);
+      margin: 8px 0;
+      padding: 12px 18px;
+      border-radius: 4px;
+      border-left: 5px solid var(--mci-blue);
+      color: var(--mci-text-dark);
     }
 
     /* Modernized Dark Code Styling for Syntax Highlighting */
@@ -200,17 +213,23 @@
   <div class="reveal">
     <div class="slides">
 
-      <!-- MODUL 0: ANKOMMEN & SETUP -->
-      <section>
-        <section class="title-slide">
-          <span class="mci-badge">Python Crashcourse</span>
-          <h1>Einführung in Python</h1>
-          <p class="subtitle">Von Grundlagen bis List Comprehensions</p>
-          <hr style="border-color: var(--mci-card-border); margin: 30px 0;">
-          <div style="font-size: 0.85em; color: var(--mci-text-dark); display: flex; justify-content: space-between;">
-            <div>Management Center Innsbruck<br><span style="color: var(--mci-text-muted);">Einführung in die Programmierung</span></div>
-          </div>
-        </section>
+    <!-- KAPITEL 1: HAUPTFOLIE (Horizontal 1) -->
+      <section class="title-slide">
+        <span class="mci-badge">Coding VO</span>
+
+        <h1>
+            <!--Füge hier den Titel dieser Folien ein-->
+        </h1>
+
+        <p class="subtitle"><!--Füge hier den Untertitel ein --></p>
+        <hr style="border-color: var(--mci-card-border); margin: 30px 0;">
+        <div style="font-size: 0.6em; color: var(--mci-text-dark); display: flex; justify-content: space-between;">
+            <div>
+                <strong>Prof. Dr. Michael Kohlegger-Ascher</strong><br>
+                Data Science @ Management, Communication & IT
+            </div>
+        </div>
+      </section>
 
         <section>
           <h2>Zielbild & Roadmap</h2>
