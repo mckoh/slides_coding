@@ -2,5 +2,5 @@
 
 In diesem Repo befinden sich alle Foliensätze zur Coding VO:
 
-* [Einführung](coding_01___basics.html)
-* [Grundlegende Konzepte](coding_02___basic_elements.html)
+* [Einführung](https://mckoh.github.io/slides_coding/coding_01___basics.html)
+* [Grundlegende Konzepte](https://mckoh.github.io/slides_coding/coding_02___basic_elements.html)
