@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Python Fundamentals - Management Center Innsbruck</title>
+
+  <!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+
+  <!-- Highlight.js Theme (VS Code / Monokai Dark Style) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+
+  <style>
+    :root {
+      /* MCI Corporate Colors */
+      --mci-blue: #002855;
+      --mci-orange: #f39200;
+      --mci-gray-bg: #f8fafc;
+      --mci-card-border: #cbd5e1;
+      --mci-text-dark: #1e293b;
+      --mci-text-muted: #64748b;
+
+      --r-background-color: #ffffff;
+      --r-main-font-size: 24px;
+      --r-main-font: 'Arial', 'Helvetica', sans-serif;
+      --r-heading-font: 'Arial', 'Helvetica', sans-serif;
+      --r-heading-color: var(--mci-blue);
+      --r-heading-text-transform: none;
+      --r-link-color: var(--mci-orange);
+    }
+
+    body {
+      background-color: #ffffff;
+    }
+
+    /* Fixed MCI Corporate Header Logo */
+    .mci-header-logo {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      height: 45px;
+      z-index: 10;
+    }
+
+    /* Fixed MCI Corporate Footer */
+    .mci-footer {
+      position: absolute;
+      bottom: 12px;
+      left: 25px;
+      right: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: var(--mci-text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      z-index: 10;
+    }
+
+    .mci-footer strong {
+      color: var(--mci-blue);
+    }
+
+    /* Slide Layout Overrides */
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal h1 {
+      font-size: 2.2em;
+      font-weight: 700;
+      color: var(--mci-blue);
+      margin-bottom: 10px;
+    }
+
+    .reveal h2 {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: var(--mci-blue);
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 30px;
+    }
+
+    .reveal h3, .reveal h4 {
+      color: var(--mci-blue);
+      font-weight: 700;
+    }
+
+    .reveal .subtitle {
+      color: var(--mci-text-muted);
+      font-size: 1em;
+      margin-bottom: 30px;
+    }
+
+    /* Grid Formats */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* Cards im MCI Style */
+    .card {
+      background: var(--mci-gray-bg);
+      padding: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--mci-card-border);
+      border-top: 4px solid var(--mci-blue);
+    }
+
+    .card.accent {
+      border-top: 4px solid var(--mci-orange);
+    }
+
+    .card h3, .card h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.85em;
+      color: var(--mci-text-dark);
+    }
+
+    .highlight-box {
+      background: #fff7ed;
+      color: #9a3412;
+      border-left: 4px solid var(--mci-orange);
+      padding: 15px;
+      border-radius: 2px;
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+
+    /* Modernized Dark Code Styling for Syntax Highlighting */
+    .reveal pre {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .reveal pre code {
+      font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+      font-size: 0.75em;
+      line-height: 1.4;
+      background: #1e293b !important;
+      padding: 12px 15px;
+      border-radius: 6px;
+    }
+
+    /* Target Slide Adjustments */
+    .title-slide {
+      border-top: 6px solid var(--mci-orange);
+      padding-top: 20px;
+    }
+
+    .mci-badge {
+      background: var(--mci-blue);
+      color: #ffffff;
+      font-size: 0.75em;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global MCI Header Logo -->
+  <img class="mci-header-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRehBjlcSgKSLTLyyEv_ntjrzmKD-hYL01GJjud00CW_Q&s=10" alt="MCI Logo">
+
+  <!-- Global MCI Footer -->
+  <div class="mci-footer">
+    <div><strong>MCI</strong> Die Unternehmerische Hochschule | The Entrepreneurial School® | Innsbruck, Austria</div>
+    <div>www.mci.edu</div>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- MODUL 0: ANKOMMEN & SETUP -->
+      <section>
+        <section class="title-slide">
+          <span class="mci-badge">Python Crashcourse</span>
+          <h1>Einführung in Python</h1>
+          <p class="subtitle">Von Grundlagen bis List Comprehensions</p>
+          <hr style="border-color: var(--mci-card-border); margin: 30px 0;">
+          <div style="font-size: 0.85em; color: var(--mci-text-dark); display: flex; justify-content: space-between;">
+            <div>Management Center Innsbruck<br><span style="color: var(--mci-text-muted);">Einführung in die Programmierung</span></div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Zielbild & Roadmap</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Was wir heute lernen</h3>
+              <ul>
+                <li><strong>Variablen & Datentypen:</strong> Zahlen, Text & Booleans</li>
+                <li><strong>Bedingungen:</strong> Logik mit <code>if / elif / else</code></li>
+                <li><strong>Datenstrukturen:</strong> Listen & Dictionaries</li>
+                <li><strong>Schleifen:</strong> Automation mit <code>for</code> & <code>while</code></li>
+                <li><strong>Ausblick:</strong> List Comprehensions</li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <h3>Setup-Check</h3>
+              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Notebook / Datei öffnen und testen:</p>
+              <pre><code class="language-python">print("Hello World! Bereit für Python.")</code></pre>
+              <div class="highlight-box" style="margin-top: 10px;">
+                <strong>Ziel:</strong> Alle Umgebungen laufen, gemeinsame Erwartung aufgebaut.
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- MODUL 1: VARIABLEN & DATENTYPEN -->
+      <section>
+        <section>
+          <h2>Variablen in Python</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Was ist eine Variable?</h3>
+              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Ein benannter Speicherplatz für Werte. Der Name ist frei wählbar (snake_case empfohlen).</p>
+              <pre><code class="language-python"># Zuweisung mit =
+alter = 25
+name = "Anna"
+preis = 19.99</code></pre>
+            </div>
+            <div class="card accent">
+              <h3>Dynamische Typisierung</h3>
+              <p style="font-size: 0.85em; color: var(--mci-text-dark);">Python erkennt den Datentyp automatisch zur Laufzeit.</p>
+              <pre><code class="language-python">x = 5       # Python weiß: int
+x = "Hallo" # Jetzt ist x ein str</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Grundlegende Datentypen & <code>type()</code></h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Die 4 Basistypen</h3>
+              <ul>
+                <li><code>int</code>: Ganzzahlen (<code>42</code>, <code>-10</code>)</li>
+                <li><code>float</code>: Kommazahlen (<code>3.14</code>)</li>
+                <li><code>str</code>: Text / Strings (<code>"MCI"</code>)</li>
+                <li><code>bool</code>: Wahrheitswerte (<code>True</code>, <code>False</code>)</li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <h3>Typ prüfen</h3>
+              <pre><code class="language-python">alter = 22
+pi = 3.1415
+kurs = "Python"
+aktiv = True
+
+print(type(alter)) # <class 'int'>
+print(type(pi))    # <class 'float'></code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Strings & f-Strings</h2>
+          <div class="card">
+            <h3>Formatierte Strings (f-Strings)</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Einfache Einbettung von Variablen direkt im Text mittels <code>f"..."</code>.</p>
+            <pre><code class="language-python">name = "Maria"
+punkte = 95
+
+# f-String Auswertung zur Laufzeit:
+nachricht = f"Hallo {name}, du hast {punkte} Punkte erreicht!"
+print(nachricht)
+# Output: Hallo Maria, du hast 95 Punkte erreicht!</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- MODUL 2: BEDINGUNGEN -->
+      <section>
+        <section>
+          <h2>Bedingungen: if / elif / else</h2>
+          <div class="card">
+            <h3>Entscheidungslogik im Code</h3>
+            <pre><code class="language-python">note = 2
+
+if note == 1:
+    print("Sehr gut")
+elif note == 2:
+    print("Gut")
+elif note == 3:
+    print("Befriedigend")
+else:
+    print("Bestanden oder Wiederholung")</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Vergleiche & Einrückung</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Vergleichsoperatoren</h3>
+              <ul>
+                <li><code>==</code> (Gleich) | <code>!=</code> (Ungleich)</li>
+                <li><code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code></li>
+                <li>Ergebnis ist immer ein <code>bool</code> (<code>True</code>/<code>False</code>)</li>
+              </ul>
+            </div>
+            <div class="card accent">
+              <h3>Syntax-Regel: 4 Spaces</h3>
+              <p style="font-size: 0.8em; color: var(--mci-text-muted);">Einrückung definiert den Codeblock. Keine Tabulatoren mischen!</p>
+              <pre><code class="language-python">if x > 0:
+    # 4 Leerzeichen Pflicht!
+    print("Positiv")</code></pre>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- PAUSE 1 -->
+      <section>
+        <h2>☕ Pause</h2>
+        <div class="highlight-box" style="margin-top: 40px; text-align: center; padding: 30px;">
+          <h3 style="color: #9a3412; margin-bottom: 10px;">Durchatmen & Kaffee holen</h3>
+          <p style="color: var(--mci-text-dark); margin: 0;">Gleich geht es weiter mit <strong>Listen & Dictionaries</strong>.</p>
+        </div>
+      </section>
+
+      <!-- MODUL 3: LISTEN -->
+      <section>
+        <section>
+          <h2>Listen in Python</h2>
+          <div class="card">
+            <h3>Was ist eine Liste?</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Eine geordnete, veränderbare (mutable) Sammlung von Elementen.</p>
+            <pre><code class="language-python"># Erstellen einer Liste mit eckigen Klammern []
+teilnehmer = ["Anna", "Ben", "Clara", "David"]
+zahlen = [10, 20, 30, 40]
+gemischt = [1, "Hallo", True, 3.14]</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Indexing & Slicing</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Indexing (0-basiert)</h3>
+              <pre><code class="language-python">lst = ["A", "B", "C", "D"]
+
+print(lst[0])   # "A" (Erstes Element)
+print(lst[-1])  # "D" (Letztes Element)</code></pre>
+            </div>
+            <div class="card accent">
+              <h3>Slicing [Start:Stopp]</h3>
+              <pre><code class="language-python"># Stopp-Index ist exklusiv!
+print(lst[1:3]) # ["B", "C"]
+print(lst[:2])  # ["A", "B"]
+print(lst[2:])  # ["C", "D"]</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Wichtige Listen-Methoden</h2>
+          <div class="card">
+            <h3>Elemente verändern & verwalten</h3>
+            <pre><code class="language-python">fruechte = ["Apfel", "Banane"]
+
+fruechte.append("Orange") # Hinzufügen -> ["Apfel", "Banane", "Orange"]
+entfernt = fruechte.pop() # Letztes Element entfernen & zurückgeben
+anzahl = len(fruechte)    # Länge der Liste -> 2
+fruechte.sort()           # Alphabetisch/Numerisch sortieren</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Typische Fehler bei Listen</h2>
+          <div class="card accent">
+            <h3>Gefahrenstelle: IndexError & Off-by-one</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Zugriffe außerhalb des gültigen Indexbereichs führen zum Programmabbruch:</p>
+            <pre><code class="language-python">zahlen = [1, 2, 3] # Indizes 0, 1, 2
+
+# IndexError: list index out of range
+print(zahlen[3])</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- MODUL 4: DICTIONARIES -->
+      <section>
+        <section>
+          <h2>Dictionaries</h2>
+          <div class="card">
+            <h3>Schlüssel-Wert-Speicher (Key-Value)</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Nachschlagetabelle für strukturierte Daten (wie ein reales Wörterbuch).</p>
+            <pre><code class="language-python"># Erstellung mit geschweiften Klammern {}
+student = {
+    "name": "Lukas",
+    "matrikelnummer": 123456,
+    "studiengang": "MCI"
+}</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Zugriff: Klammern vs. <code>get()</code></h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Direkter Zugriff: <code>d["key"]</code></h3>
+              <pre><code class="language-python">print(student["name"]) # "Lukas"
+
+# KeyError wenn Schlüssel fehlt!
+print(student["alter"]) # Fehler!</code></pre>
+            </div>
+            <div class="card accent">
+              <h3>Sicherer Zugriff: <code>d.get()</code></h3>
+              <pre><code class="language-python"># Gibt None oder Standardwert zurück
+print(student.get("alter"))       # None
+print(student.get("alter", 20))   # 20</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Iteration über Dictionaries</h2>
+          <div class="card">
+            <h3>Schlüssel und Werte durchlaufen</h3>
+            <pre><code class="language-python"># Über Key-Value Paare iterieren:
+for key, value in student.items():
+    print(f"{key}: {value}")</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- PAUSE 2 -->
+      <section>
+        <h2>☕ Pause</h2>
+        <div class="highlight-box" style="margin-top: 40px; text-align: center; padding: 30px;">
+          <h3 style="color: #9a3412; margin-bottom: 10px;">Durchatmen & Netzwerken</h3>
+          <p style="color: var(--mci-text-dark); margin: 0;">Gleich startet der Endspurt mit <strong>Schleifen & List Comprehensions</strong>.</p>
+        </div>
+      </section>
+
+      <!-- MODUL 5: FOR-SCHLEIFEN -->
+      <section>
+        <section>
+          <h2>Schleifen: <code>for</code></h2>
+          <div class="card">
+            <h3>Iterieren über Sammlungen</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">„Für jedes Element in der Sammlung mache folgendes…“</p>
+            <pre><code class="language-python">staedte = ["Innsbruck", "Wien", "Salzburg"]
+
+for stadt in staedte:
+    print(f"Willkommen in {stadt}!")</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2><code>range()</code> & Akkumulatoren</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Zahlenreihen mit <code>range()</code></h3>
+              <pre><code class="language-python"># range(5) erzeugt 0, 1, 2, 3, 4
+for i in range(5):
+    print(f"Durchlauf {i}")</code></pre>
+            </div>
+            <div class="card accent">
+              <h3>Muster: Akkumulator</h3>
+              <pre><code class="language-python">preise = [10, 20, 30]
+summe = 0
+
+for preis in preise:
+    summe += preis # summe = summe + preis
+
+print(f"Gesamt: {summe}") # 60</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Typische Anwendungen</h2>
+          <div class="card">
+            <h3>Zählen, Summieren & Filtern</h3>
+            <pre><code class="language-python">zahlen = [1, 5, 8, 12, 15]
+gefiltert = []
+
+for z in zahlen:
+    if z > 10:
+        gefiltert.append(z)
+
+print(gefiltert) # [12, 15]</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <!-- MODUL 6: WHILE-SCHLEIFEN -->
+      <section>
+        <section>
+          <h2>Schleifen: <code>while</code></h2>
+          <div class="card">
+            <h3>Bedingungsgesteuerte Wiederholung</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">„Solange eine Bedingung erfüllt ist, führe den Code aus.“</p>
+            <pre><code class="language-python">counter = 3
+
+while counter > 0:
+    print(f"Countdown: {counter}")
+    counter -= 1 # WICHTIG: Zustand ändern!
+
+print("Start!")</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Abbruch & Zustandsänderung</h2>
+          <div class="card accent">
+            <h3>Gefahr von Endlosschleifen</h3>
+            <p style="font-size: 0.85em; color: var(--mci-text-dark);">Der Zustand in der Abbruchbedingung <strong>muss</strong> sich innerhalb der Schleife verändern!</p>
+            <pre><code class="language-python"># Endlosschleife (Vermeiden!):
+# while True:
+#     print("Stoppt nie")</code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Steuerung: <code>break</code> & <code>continue</code></h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3><code>break</code>: Schleife abbrechen</h3>
+              <pre><code class="language-python">while True:
+    eingabe = input("Beenden mit 'q': ")
+    if eingabe == 'q':
+        break # Verlässt die Schleife sofort</code></pre>
+            </div>
+            <div class="card accent">
+              <h3><code>continue</code>: Durchlauf überspringen</h3>
+              <pre><code class="language-python">for i in range(5):
+    if i == 2:
+        continue # Überspringt 2
+    print(i) # Druckt 0, 1, 3, 4</code></pre>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- MODUL 7: LIST COMPREHENSIONS & WRAP-UP -->
+      <section>
+        <section>
+          <h2>List Comprehensions</h2>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Klassische Schleife</h3>
+              <pre><code class="language-python">zahlen = [1, 2, 3, 4]
+quadrate = []
+
+for x in zahlen:
+    quadrate.append(x * x)</code></pre>
+            </div>
+            <div class="card accent">
+              <h3>List Comprehension (Kompakt)</h3>
+              <pre><code class="language-python">zahlen = [1, 2, 3, 4]
+
+# Elegant in einer Zeile:
+quadrate = [x * x for x in zahlen]
+
+# Mit Bedingung:
+gerade = [x for x in zahlen if x % 2 == 0]</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>Zusammenfassung & Takeaways</h2>
+          <div class="card accent">
+            <h3>Der rote Faden</h3>
+            <ul>
+              <li><strong>Variablen:</strong> Werte speichern und benennen</li>
+              <li><strong>Strukturen:</strong> Daten organisieren in Listen & Dictionaries</li>
+              <li><strong>Entscheidungen:</strong> Programmfluss steuern mit <code>if / elif / else</code></li>
+              <li><strong>Wiederholungen:</strong> Aufgaben automatisieren mit <code>for</code> & <code>while</code></li>
+            </ul>
+          </div>
+          <div class="highlight-box" style="text-align: center; margin-top: 25px;">
+            🎉 <strong>Geschafft!</strong> Viel Erfolg beim Programmieren!
+          </div>
+        </section>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Reveal.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'convex',
+      plugins: [ RevealHighlight ]
+    });
+  </script>
+</body>
+</html>
