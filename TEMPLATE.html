@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Einführung in Coding - Management Center Innsbruck</title>
+
+  <!-- Reveal.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+
+  <!-- Highlight.js Theme (VS Code / Monokai Dark Style) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+
+  <style>
+    :root {
+      /* MCI Corporate Colors */
+      --mci-blue: #002855;
+      --mci-orange: #f39200;
+      --mci-gray-bg: #f8fafc;
+      --mci-card-border: #cbd5e1;
+      --mci-text-dark: #1e293b;
+      --mci-text-muted: #64748b;
+
+      --r-background-color: #ffffff;
+      --r-main-font-size: 24px;
+      --r-main-font: 'Arial', 'Helvetica', sans-serif;
+      --r-heading-font: 'Franklin Gothic Demi Cond', 'ITC Franklin Gothic', 'Arial Narrow', sans-serif;
+      --r-heading-color: var(--mci-blue);
+      --r-heading-text-transform: none;
+      --r-link-color: var(--mci-orange);
+    }
+
+    body {
+      background-color: #ffffff;
+    }
+
+    /* Fixed MCI Corporate Header Logo */
+    .mci-header-logo {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      height: 45px;
+      z-index: 10;
+    }
+
+    /* Fixed MCI Corporate Footer */
+    .mci-footer {
+      position: absolute;
+      bottom: 12px;
+      left: 25px;
+      right: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: var(--mci-text-muted);
+      border-top: 1px solid #e2e8f0;
+      padding-top: 8px;
+      z-index: 10;
+    }
+
+    .mci-footer strong {
+      color: var(--mci-blue);
+    }
+
+    /* Slide Layout Overrides */
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal h1 {
+      font-family: var(--r-heading-font);
+      font-size: 2.2em;
+      font-weight: 700;
+      color: var(--mci-blue);
+      margin-bottom: 10px;
+    }
+
+    .reveal h2 {
+      font-family: var(--r-heading-font);
+      font-size: 1.6em;
+      font-weight: 700;
+      color: var(--mci-blue);
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 40px;
+    }
+
+    .reveal h3, .reveal h4 {
+      font-family: var(--r-heading-font);
+      color: var(--mci-blue);
+      font-weight: 700;
+    }
+
+    .reveal .subtitle {
+      color: var(--mci-text-muted);
+      font-size: 1em;
+      margin-bottom: 30px;
+    }
+
+    /* Grid Formats */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+
+    /* Cards im MCI Style */
+    .card {
+      background: var(--mci-gray-bg);
+      padding: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--mci-card-border);
+      border-top: 4px solid var(--mci-blue);
+    }
+
+    .card.accent {
+      border-top: 4px solid var(--mci-orange);
+    }
+
+    .card h3, .card h4 {
+      font-family: var(--r-heading-font);
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.85em;
+      color: var(--mci-text-dark);
+    }
+
+    .highlight-box {
+      background: #fff7ed;
+      color: #9a3412;
+      border-left: 4px solid var(--mci-orange);
+      padding: 15px;
+      border-radius: 2px;
+      margin-top: 20px;
+      font-size: 0.9em;
+    }
+
+    .pyramid-level {
+      background: var(--mci-gray-bg);
+      margin: 8px 0;
+      padding: 12px 18px;
+      border-radius: 4px;
+      border-left: 5px solid var(--mci-blue);
+      color: var(--mci-text-dark);
+    }
+
+    /* Modernized Dark Code Styling for Syntax Highlighting */
+    .reveal pre {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      width: 100%;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .reveal pre code {
+      font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+      font-size: 0.75em;
+      line-height: 1.4;
+      background: #1e293b !important;
+      padding: 12px 15px;
+      border-radius: 6px;
+    }
+
+    /* Target Slide Adjustments */
+    .title-slide {
+      border-top: 6px solid var(--mci-orange);
+      padding-top: 20px;
+    }
+
+    .mci-badge {
+      background: var(--mci-blue);
+      color: #ffffff;
+      font-size: 0.75em;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 2px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Global MCI Header Logo -->
+  <img class="mci-header-logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRehBjlcSgKSLTLyyEv_ntjrzmKD-hYL01GJjud00CW_Q&s=10" alt="MCI Logo">
+
+  <!-- Global MCI Footer -->
+  <div class="mci-footer">
+    <div><strong>MCI</strong> Die Unternehmerische Hochschule | The Entrepreneurial School® | Innsbruck, Austria</div>
+    <div>www.mci.edu</div>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+    <!-- KAPITEL 1: HAUPTFOLIE (Horizontal 1) -->
+      <section class="title-slide">
+        <span class="mci-badge">Coding VO</span>
+
+        <h1>
+            <!--Füge hier den Titel dieser Folien ein-->
+        </h1>
+
+        <p class="subtitle"><!--Füge hier den Untertitel ein --></p>
+        <hr style="border-color: var(--mci-card-border); margin: 30px 0;">
+        <div style="font-size: 0.6em; color: var(--mci-text-dark); display: flex; justify-content: space-between;">
+            <div>
+                <strong>Prof. Dr. Michael Kohlegger-Ascher</strong><br>
+                Data Science @ Management, Communication & IT
+            </div>
+        </div>
+      </section>
+
+    <!-- Füge hier deine Folien ein -->
+
+        </div>
+  </div>
+
+  <!-- Reveal.js Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      controls: true,
+      progress: true,
+      center: true,
+      transition: 'convex', /* 3D-Rotations-Animation */
+      plugins: [ RevealHighlight ]
+    });
+  </script>
+</body>
+</html>
